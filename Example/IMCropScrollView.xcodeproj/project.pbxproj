@@ -20,12 +20,9 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		A1E8DB7806484032A11224B9 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C4E9E45E054388BDA4B633 /* libPods-Tests.a */; };
 		B0DA3FD719D474FE0049BBEB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0DA3FD519D474FE0049BBEB /* ViewController.xib */; };
-		B0DA3FF619D47A150049BBEB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = B0DA3FEC19D47A150049BBEB /* .gitkeep */; };
-		B0DA3FF719D47A150049BBEB /* IMG_0529.JPG in Resources */ = {isa = PBXBuildFile; fileRef = B0DA3FED19D47A150049BBEB /* IMG_0529.JPG */; };
-		B0DA3FF819D47A150049BBEB /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = B0DA3FEF19D47A150049BBEB /* .gitkeep */; };
-		B0DA3FF919D47A150049BBEB /* IMCropOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA3FF119D47A150049BBEB /* IMCropOverlay.m */; };
-		B0DA3FFA19D47A150049BBEB /* IMCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA3FF319D47A150049BBEB /* IMCropScrollView.m */; };
-		B0DA3FFB19D47A150049BBEB /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA3FF519D47A150049BBEB /* UIImage+Scale.m */; };
+		B0DA400319D480160049BBEB /* IMCropOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA3FFE19D480160049BBEB /* IMCropOverlay.m */; };
+		B0DA400419D480160049BBEB /* IMCropScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA400019D480160049BBEB /* IMCropScrollView.m */; };
+		B0DA400519D480160049BBEB /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = B0DA400219D480160049BBEB /* UIImage+Scale.m */; };
 		B0EF373919D46425007AD29F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EF372F19D46425007AD29F /* AppDelegate.m */; };
 		B0EF373D19D46425007AD29F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EF373819D46425007AD29F /* ViewController.m */; };
 		D11018F63FD846318B37B971 /* libPods-IMCrop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86FA89E712C84DBBBB2EEF20 /* libPods-IMCrop.a */; };
@@ -62,15 +59,12 @@
 		90EBBF67DD1D4F089CA0995C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		9B97C24715574BEDA062CEE1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B0DA3FD619D474FE0049BBEB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
-		B0DA3FEC19D47A150049BBEB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		B0DA3FED19D47A150049BBEB /* IMG_0529.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0529.JPG; sourceTree = "<group>"; };
-		B0DA3FEF19D47A150049BBEB /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		B0DA3FF019D47A150049BBEB /* IMCropOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCropOverlay.h; sourceTree = "<group>"; };
-		B0DA3FF119D47A150049BBEB /* IMCropOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCropOverlay.m; sourceTree = "<group>"; };
-		B0DA3FF219D47A150049BBEB /* IMCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCropScrollView.h; sourceTree = "<group>"; };
-		B0DA3FF319D47A150049BBEB /* IMCropScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCropScrollView.m; sourceTree = "<group>"; };
-		B0DA3FF419D47A150049BBEB /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
-		B0DA3FF519D47A150049BBEB /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
+		B0DA3FFD19D480160049BBEB /* IMCropOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCropOverlay.h; sourceTree = "<group>"; };
+		B0DA3FFE19D480160049BBEB /* IMCropOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCropOverlay.m; sourceTree = "<group>"; };
+		B0DA3FFF19D480160049BBEB /* IMCropScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCropScrollView.h; sourceTree = "<group>"; };
+		B0DA400019D480160049BBEB /* IMCropScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMCropScrollView.m; sourceTree = "<group>"; };
+		B0DA400119D480160049BBEB /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
+		B0DA400219D480160049BBEB /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		B0EF372E19D46425007AD29F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B0EF372F19D46425007AD29F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B0EF373719D46425007AD29F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -144,8 +138,7 @@
 		6003F593195388D20070C39A /* IMCrop */ = {
 			isa = PBXGroup;
 			children = (
-				B0DA3FEB19D47A150049BBEB /* Assets */,
-				B0DA3FEE19D47A150049BBEB /* Classes */,
+				B0DA3FFC19D480160049BBEB /* IMScrollView */,
 				B0EF372E19D46425007AD29F /* AppDelegate.h */,
 				B0EF372F19D46425007AD29F /* AppDelegate.m */,
 				B0EF373719D46425007AD29F /* ViewController.h */,
@@ -197,29 +190,18 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		B0DA3FEB19D47A150049BBEB /* Assets */ = {
+		B0DA3FFC19D480160049BBEB /* IMScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				B0DA3FEC19D47A150049BBEB /* .gitkeep */,
-				B0DA3FED19D47A150049BBEB /* IMG_0529.JPG */,
+				B0DA3FFD19D480160049BBEB /* IMCropOverlay.h */,
+				B0DA3FFE19D480160049BBEB /* IMCropOverlay.m */,
+				B0DA3FFF19D480160049BBEB /* IMCropScrollView.h */,
+				B0DA400019D480160049BBEB /* IMCropScrollView.m */,
+				B0DA400119D480160049BBEB /* UIImage+Scale.h */,
+				B0DA400219D480160049BBEB /* UIImage+Scale.m */,
 			);
-			name = Assets;
-			path = ../../Pod/Assets;
-			sourceTree = "<group>";
-		};
-		B0DA3FEE19D47A150049BBEB /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				B0DA3FEF19D47A150049BBEB /* .gitkeep */,
-				B0DA3FF019D47A150049BBEB /* IMCropOverlay.h */,
-				B0DA3FF119D47A150049BBEB /* IMCropOverlay.m */,
-				B0DA3FF219D47A150049BBEB /* IMCropScrollView.h */,
-				B0DA3FF319D47A150049BBEB /* IMCropScrollView.m */,
-				B0DA3FF419D47A150049BBEB /* UIImage+Scale.h */,
-				B0DA3FF519D47A150049BBEB /* UIImage+Scale.m */,
-			);
-			name = Classes;
-			path = ../../Pod/Classes;
+			name = IMScrollView;
+			path = ../../IMScrollView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,9 +288,6 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				B0DA3FD719D474FE0049BBEB /* ViewController.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				B0DA3FF819D47A150049BBEB /* .gitkeep in Resources */,
-				B0DA3FF719D47A150049BBEB /* IMG_0529.JPG in Resources */,
-				B0DA3FF619D47A150049BBEB /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,11 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0DA3FFA19D47A150049BBEB /* IMCropScrollView.m in Sources */,
+				B0DA400419D480160049BBEB /* IMCropScrollView.m in Sources */,
 				B0EF373D19D46425007AD29F /* ViewController.m in Sources */,
 				B0EF373919D46425007AD29F /* AppDelegate.m in Sources */,
-				B0DA3FF919D47A150049BBEB /* IMCropOverlay.m in Sources */,
-				B0DA3FFB19D47A150049BBEB /* UIImage+Scale.m in Sources */,
+				B0DA400319D480160049BBEB /* IMCropOverlay.m in Sources */,
+				B0DA400519D480160049BBEB /* UIImage+Scale.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

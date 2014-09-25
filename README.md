@@ -40,7 +40,7 @@ iOS5+
 IMCropScrollView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod 'IMCropScrollView', '~> 1.0'
+    pod 'IMCropScrollView', '~> 1.0.1'
 
 ## Author
 

@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "IMCropScrollView"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "IMCropScrollView enables to make scrollView with crop option with rotation. You can also draw a overlay with opacity."
   s.description      = <<-DESC
 

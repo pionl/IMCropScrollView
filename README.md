@@ -40,7 +40,7 @@ iOS5+
 IMCrop is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "IMCrop"
+    pod "IMCropSrollView"
 
 ## Author
 

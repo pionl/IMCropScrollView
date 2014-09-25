@@ -1,0 +1,17 @@
+PODS:
+  - IMCrop (0.1.0)
+  - Kiwi (2.3.0)
+
+DEPENDENCIES:
+  - IMCrop (from `../`)
+  - Kiwi
+
+EXTERNAL SOURCES:
+  IMCrop:
+    :path: ../
+
+SPEC CHECKSUMS:
+  IMCrop: bc997a3fcddcb65a48eb718ea9f79af5338d9406
+  Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
+
+COCOAPODS: 0.33.1

@@ -1,8 +1,8 @@
 # IMCropScrollView
 
-[![Version](https://img.shields.io/cocoapods/v/IMCrop.svg?style=flat)](http://cocoadocs.org/docsets/IMCrop)
-[![License](https://img.shields.io/cocoapods/l/IMCrop.svg?style=flat)](http://cocoadocs.org/docsets/IMCrop)
-[![Platform](https://img.shields.io/cocoapods/p/IMCrop.svg?style=flat)](http://cocoadocs.org/docsets/IMCrop)
+[![Version](https://img.shields.io/cocoapods/v/IMCropScrollView.svg?style=flat)](http://cocoadocs.org/docsets/IMCropScrollView)
+[![License](https://img.shields.io/cocoapods/l/IMCropScrollView.svg?style=flat)](http://cocoadocs.org/docsets/IMCropScrollView)
+[![Platform](https://img.shields.io/cocoapods/p/IMCropScrollView.svg?style=flat)](http://cocoadocs.org/docsets/IMCropScrollView)
 
 ## Usage
 
@@ -37,10 +37,10 @@ iOS5+
 
 ## Installation
 
-IMCrop is available through [CocoaPods](http://cocoapods.org). To install
+IMCropScrollView is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-    pod "IMCropSrollView"
+    pod 'IMCropScrollView', '~> 1.0'
 
 ## Author
 
@@ -48,5 +48,5 @@ Martin Kluska, martin.kluska@imakers.cz
 
 ## License
 
-IMCrop is available under the MIT license. See the LICENSE file for more info.
+IMCropScrollView is available under the MIT license. See the LICENSE file for more info.
 

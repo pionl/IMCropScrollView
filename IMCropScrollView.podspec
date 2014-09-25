@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '5.1'
   s.requires_arc = true
 
-  s.source_files = 'IMScrollView'
+  s.source_files = 'IMCropScrollView/*.{h,m}'
 
 
   # s.public_header_files = 'Pod/Classes/**/*.h'

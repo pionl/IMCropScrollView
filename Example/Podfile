@@ -1,0 +1,9 @@
+target 'IMCrop', :exclusive => true do
+  pod "IMCrop", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "IMCrop", :path => "../"
+
+  pod 'Kiwi'
+end

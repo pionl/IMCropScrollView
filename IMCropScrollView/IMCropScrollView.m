@@ -11,8 +11,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define rad(angle) ((angle) / 180.0 * M_PI)
+#define angle(radians) ((radians) * (180.0 / M_PI))
 
 @implementation IMCropScrollView
+
+@synthesize rotationEnabled = _rotationEnabled;
 
 @synthesize operationQueue  = _operationQueue;
 
@@ -245,6 +248,17 @@
     [self setShowsVerticalScrollIndicator:NO];
 }
 
+- (void)setRotationEnabled:(BOOL)rotationEnabled {
+    if (rotationGestureRecognizer) {
+        [rotationGestureRecognizer setEnabled:rotationEnabled];
+    } else if (rotationEnabled) {
+        rotationGestureRecognizer   = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationGesture:)];
+        
+        [self addGestureRecognizer:rotationGestureRecognizer];
+    }
+    
+    _rotationEnabled     = rotationEnabled;
+}
 
 - (NSOperationQueue *)operationQueue {
     if (!_operationQueue) {
@@ -451,6 +465,24 @@
     return _rotateDegrees != 0 && _rotateDegrees != 360;
 }
 
+- (void)rotationGesture:(UIRotationGestureRecognizer*)gesture {
+    if([gesture state] == UIGestureRecognizerStateEnded) {
+        _lastRotation = 0.0;
+        return;
+    }
+    
+    CGFloat rotation = 0.0 - (_lastRotation - [gesture rotation]);
+    
+    CGAffineTransform currentTransform = [self imageView].transform;
+    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform,rotation);
+    
+    [[self imageView] setTransform:newTransform];
+    
+    _lastRotation = [gesture rotation];
+    
+    _rotateDegrees = angle(atan2(newTransform.b, newTransform.a));
+}
+
 #pragma mark UIScrollViewDelegate
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -459,6 +491,7 @@
 
 - (void)scrollViewDidZoom:(UIScrollView *)aScrollView {
     [self centerImage];
+    
     if (self.onZoom) {
         self.onZoom(self);
     }

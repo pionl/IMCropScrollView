@@ -13,6 +13,8 @@
 @interface IMCropScrollView : UIScrollView <UIScrollViewDelegate> {
     float _imageCropOffsetX;
     float _imageCropOffsetY;
+    
+    UIGestureRecognizer *rotationGestureRecognizer;
 }
 /**
  *  Operation queue for
@@ -181,9 +183,14 @@
 #pragma mark - Rotation
 
 /**
+ * Enables rotation by gesture. Defaulty NO.
+ */
+@property (nonatomic, getter = isRotationEnabled) BOOL rotationEnabled;
+
+/**
  *  Current rotation
  */
-@property (nonatomic) float rotateDegrees;
+@property (nonatomic) CGFloat rotateDegrees;
 
 /**
  *  Determines if the view is animating for rotation.
@@ -214,7 +221,11 @@
 
 @interface IMCropScrollView ()
 
+@property (nonatomic) CGFloat lastRotation;
+
 - (void)setUp;
 
+#pragma mark - Rotation
+- (void)rotationGesture:(UIRotationGestureRecognizer*)gesture;
 
 @end

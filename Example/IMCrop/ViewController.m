@@ -26,6 +26,7 @@
     [self.scrollView setFillRectWithColor:NO];
     [self.scrollView setImage:[UIImage imageNamed:@"IMG_0529.JPG"]];
     [self.scrollView setClipsToBounds:NO];
+    [[self scrollView] setRotationEnabled:YES];
     
     [[self cropOverlay] setCropScrollView:[self scrollView]];
     [[self cropOverlay] setNeedsDisplay];

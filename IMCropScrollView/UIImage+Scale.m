@@ -125,45 +125,57 @@
 
 - (UIImage*)rotateToDegrees:(float)degrees {
     
-    if (degrees == 360) {
-        degrees = 0;
+    @autoreleasepool {
+        
+        if (degrees == 360) {
+            degrees = 0;
+        }
+        CGImageRef imageRef;
+        
+        if (self.imageOrientation != UIImageOrientationUp) {
+            imageRef    = [[self fixOrientation] CGImage];
+        } else {
+            imageRef    = [self CGImage];
+        }
+        
+        
+        //NSLog(@"Image orientation %d",self.imageOrientation);
+        CGSize rotatedSize  = CGSizeApplyAffineTransform(self.size, CGAffineTransformMakeRotation(rad(degrees)));
+        
+        if (((int)degrees % 90) != 0) {
+            rotatedSize = self.size;
+        }
+        
+        if (rotatedSize.width < 0) {
+            rotatedSize.width *= -1;
+        }
+        if (rotatedSize.height < 0) {
+            rotatedSize.height *= -1;
+        }
+        
+        // Create the bitmap context
+        UIGraphicsBeginImageContextWithOptions(rotatedSize, YES, 0.0);
+        CGContextRef bitmap = UIGraphicsGetCurrentContext();
+        
+        
+        // Move the origin to the middle of the image so we will rotate and scale around the center.
+        CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
+        
+        //   // Rotate the image context
+        CGContextRotateCTM(bitmap, rad(degrees));
+        
+        // Now, draw the rotated/scaled image into the context
+        CGContextScaleCTM(bitmap, 1.0, -1.0);
+        
+        CGContextDrawImage(bitmap, CGRectMake(-self.size.width / 2, -self.size.height / 2, self.size.width, self.size.height), imageRef);
+        
+        
+        UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        return newImage;
+        
     }
-    CGImageRef imageRef;
-    
-    if (self.imageOrientation != UIImageOrientationUp) {
-        imageRef    = [[self fixOrientation] CGImage];
-    } else {
-        imageRef    = [self CGImage];
-    }
-    
-    //NSLog(@"Image orientation %d",self.imageOrientation);
-    CGSize rotatedSize  = CGSizeApplyAffineTransform(self.size, CGAffineTransformMakeRotation(rad(degrees)));
-    
-    if (rotatedSize.width < 0) {
-        rotatedSize.width *= -1;
-    }
-    if (rotatedSize.height < 0) {
-        rotatedSize.height *= -1;
-    }
-    
-    // Create the bitmap context
-    UIGraphicsBeginImageContextWithOptions(rotatedSize, YES, 0.0);
-    CGContextRef bitmap = UIGraphicsGetCurrentContext();
-    
-    // Move the origin to the middle of the image so we will rotate and scale around the center.
-    CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
-    
-    //   // Rotate the image context
-    CGContextRotateCTM(bitmap, rad(degrees));
-    
-    // Now, draw the rotated/scaled image into the context
-    CGContextScaleCTM(bitmap, 1.0, -1.0);
-    CGContextDrawImage(bitmap, CGRectMake(-self.size.width / 2, -self.size.height / 2, self.size.width, self.size.height), imageRef);
-    
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
 }
 
 - (BOOL)isOrientationPortrait {

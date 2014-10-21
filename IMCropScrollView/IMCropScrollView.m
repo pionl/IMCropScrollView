@@ -23,92 +23,100 @@
     
     //NSLog(@"IMCropScrollView: Scale:        %f",zoomScale);
     
-    
-    CGRect smallImageSize   = [IMCropScrollView getImageSize:image inBounds:frame withImageOffset:YES];
-    
-    BOOL drawBarsOnNoZoom   = NO;
-    if (color != nil) {
-        if (frame.size.width != smallImageSize.size.width || frame.size.height != smallImageSize.size.height) {
-            drawBarsOnNoZoom= YES;
+    @autoreleasepool {
+        
+        CGRect smallImageSize   = [IMCropScrollView getImageSize:image inBounds:frame withImageOffset:YES];
+        
+        BOOL drawBarsOnNoZoom   = NO;
+        if (color != nil) {
+            if (frame.size.width != smallImageSize.size.width || frame.size.height != smallImageSize.size.height) {
+                drawBarsOnNoZoom= YES;
+            }
         }
+        
+        // fix when scale and offset is not setted and the image should be filled to frame.
+        
+        BOOL imageIsWithOffset      = CGPointEqualToPoint(smallImageSize.origin, CGPointZero);
+        
+        if (zoomScale != 1 || drawBarsOnNoZoom) {
+            
+            CGRect visibleRect  = [IMCropScrollView getCropedImageRectAtScale:zoomScale andCropFrame:frame andImageSize:image.size withContentOffset:contentOffset];
+            
+            CGAffineTransform rectTransform;
+            
+            //NSLog(@"IMCropScrollView: Orientation %d",image.imageOrientation);
+            
+            switch (image.imageOrientation)
+            {
+                case UIImageOrientationLeft:
+                    rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(90)), 0, -image.size.height);
+                    break;
+                case UIImageOrientationRight:
+                    rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(-90)), -image.size.width, 0);
+                    break;
+                case UIImageOrientationDown:
+                    rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(-180)), -image.size.width, -image.size.height);
+                    break;
+                default:
+                    rectTransform = CGAffineTransformIdentity;
+            };
+            
+            visibleRect = CGRectApplyAffineTransform(visibleRect,CGAffineTransformScale(rectTransform, image.scale, image.scale));
+            
+            //NSLog(@"IMCropScrollView: Original:     %f %f",image.size.width,image.size.height);
+            //NSLog(@"IMCropScrollView: Rect:         %f %f",visibleRect.size.width,visibleRect.size.height);
+            //NSLog(@"IMCropScrollView: Offset:       %f %f",visibleRect.origin.x,visibleRect.origin.y);
+            
+            
+            
+            CGImageRef cr               = CGImageCreateWithImageInRect([image CGImage], visibleRect);
+            
+            UIImage *img    = nil;
+            
+            // image offset is set, maybe we need to draw bars to fill image area
+            if (!imageIsWithOffset && color) {
+                //NSLog(@"IMCropScrollView: New image:    %zu %zu", CGImageGetWidth(cr),CGImageGetHeight(cr));
+                
+                float imgWidth      = CGImageGetWidth(cr);
+                float imgHeight     = CGImageGetHeight(cr);
+                
+                if (image.size.width < image.size.height) {
+                    imgWidth        = imgHeight;
+                    imgHeight       = CGImageGetWidth(cr);
+                } else {
+                    imgWidth        = CGImageGetWidth(cr);
+                }
+                
+                // DRAW BLACK BARS if image size is not equal as desired
+                if (visibleRect.size.width > imgWidth || visibleRect.size.height > imgHeight) {
+                    
+                    CGRect imageRect            = CGRectMake(0, 0, visibleRect.size.width, visibleRect.size.height);
+                    CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
+                    CGContextRef context        = CGBitmapContextCreate(NULL, visibleRect.size.width, visibleRect.size.height, 8, 0, colorSpace, kCGBitmapAlphaInfoMask);
+                    
+                    CGContextSetFillColorWithColor(context, [color CGColor]);
+                    CGContextFillRect(context, imageRect);
+                    CGContextDrawImage(context, CGRectMake((visibleRect.size.width - CGImageGetWidth(cr)) / 2, (visibleRect.size.height - CGImageGetHeight(cr)) / 2, CGImageGetWidth(cr), CGImageGetHeight(cr)), cr);
+                    
+                    cr                          = CGBitmapContextCreateImage(context);
+                    
+                    CGColorSpaceRelease(colorSpace);
+                    CGContextRelease(context);
+                }
+            }
+            
+            img                 = [[UIImage alloc] initWithCGImage:cr scale:[image scale] orientation:[image imageOrientation]];
+            image   = nil;
+            //NSLog(@"IMCropScrollView: New image:    %f %f",img.size.width,img.size.height);
+            CGImageRelease(cr);
+            return img;
+            
+        } else return image;
+        
     }
     
-    // fix when scale and offset is not setted and the image should be filled to frame.
     
-    BOOL imageIsWithOffset      = CGPointEqualToPoint(smallImageSize.origin, CGPointZero);
     
-    if (zoomScale != 1 || drawBarsOnNoZoom) {
-        
-        CGRect visibleRect  = [IMCropScrollView getCropedImageRectAtScale:zoomScale andCropFrame:frame andImageSize:image.size withContentOffset:contentOffset];
-        
-        CGAffineTransform rectTransform;
-        
-        //NSLog(@"IMCropScrollView: Orientation %d",image.imageOrientation);
-        
-        switch (image.imageOrientation)
-        {
-            case UIImageOrientationLeft:
-                rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(90)), 0, -image.size.height);
-                break;
-            case UIImageOrientationRight:
-                rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(-90)), -image.size.width, 0);
-                break;
-            case UIImageOrientationDown:
-                rectTransform = CGAffineTransformTranslate(CGAffineTransformMakeRotation(rad(-180)), -image.size.width, -image.size.height);
-                break;
-            default:
-                rectTransform = CGAffineTransformIdentity;
-        };
-        
-        visibleRect = CGRectApplyAffineTransform(visibleRect,CGAffineTransformScale(rectTransform, image.scale, image.scale));
-        
-        //NSLog(@"IMCropScrollView: Original:     %f %f",image.size.width,image.size.height);
-        //NSLog(@"IMCropScrollView: Rect:         %f %f",visibleRect.size.width,visibleRect.size.height);
-        //NSLog(@"IMCropScrollView: Offset:       %f %f",visibleRect.origin.x,visibleRect.origin.y);
-        
-        CGImageRef cr               = CGImageCreateWithImageInRect([image CGImage], visibleRect);
-        
-        UIImage *img    = nil;
-        
-        // image offset is set, maybe we need to draw bars to fill image area
-        if (!imageIsWithOffset && color) {
-            //NSLog(@"IMCropScrollView: New image:    %zu %zu", CGImageGetWidth(cr),CGImageGetHeight(cr));
-            
-            float imgWidth      = CGImageGetWidth(cr);
-            float imgHeight     = CGImageGetHeight(cr);
-            
-            if (image.size.width < image.size.height) {
-                imgWidth        = imgHeight;
-                imgHeight       = CGImageGetWidth(cr);
-            } else {
-                imgWidth        = CGImageGetWidth(cr);
-            }
-            
-            // DRAW BLACK BARS if image size is not equal as desired
-            if (visibleRect.size.width > imgWidth || visibleRect.size.height > imgHeight) {
-                
-                CGRect imageRect            = CGRectMake(0, 0, visibleRect.size.width, visibleRect.size.height);
-                CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
-                CGContextRef context        = CGBitmapContextCreate(NULL, visibleRect.size.width, visibleRect.size.height, 8, 0, colorSpace, kCGBitmapAlphaInfoMask);
-                
-                CGContextSetFillColorWithColor(context, [color CGColor]);
-                CGContextFillRect(context, imageRect);
-                CGContextDrawImage(context, CGRectMake((visibleRect.size.width - CGImageGetWidth(cr)) / 2, (visibleRect.size.height - CGImageGetHeight(cr)) / 2, CGImageGetWidth(cr), CGImageGetHeight(cr)), cr);
-                
-                cr                          = CGBitmapContextCreateImage(context);
-                
-                CGColorSpaceRelease(colorSpace);
-                CGContextRelease(context);
-            }
-        }
-        
-        img                 = [[UIImage alloc] initWithCGImage:cr scale:[image scale] orientation:[image imageOrientation]];
-        image   = nil;
-        //NSLog(@"IMCropScrollView: New image:    %f %f",img.size.width,img.size.height);
-        CGImageRelease(cr);
-        return img;
-        
-    } else return image;
 }
 
 + (CGRect)getCropedImageRectAtScale:(float)scale andCropFrame:(CGRect)frame andImageSize:(CGSize)imageSize  withContentOffset:(CGPoint)contentOffset {

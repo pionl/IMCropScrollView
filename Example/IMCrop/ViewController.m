@@ -40,6 +40,8 @@
 
 - (IBAction)generate:(id)sender {
     
+    [self.preview setImage:nil];
+    
     [[self scrollView] croppedImageWithBlock:^(UIImage *image) {
         [self.preview setImage:image];
     }];

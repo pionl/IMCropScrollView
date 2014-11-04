@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IMCropScrollView : UIScrollView <UIScrollViewDelegate> {
+@interface IMCropScrollView : UIScrollView <UIScrollViewDelegate, UIGestureRecognizerDelegate> {
     float _imageCropOffsetX;
     float _imageCropOffsetY;
     

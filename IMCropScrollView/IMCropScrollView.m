@@ -261,7 +261,7 @@
         [rotationGestureRecognizer setEnabled:rotationEnabled];
     } else if (rotationEnabled) {
         rotationGestureRecognizer   = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(rotationGesture:)];
-        
+        [rotationGestureRecognizer setDelegate:self];
         [self addGestureRecognizer:rotationGestureRecognizer];
     }
     
@@ -504,5 +504,12 @@
         self.onZoom(self);
     }
 }
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 
 @end

@@ -489,6 +489,9 @@
     _lastRotation = [gesture rotation];
     
     _rotateDegrees = angle(atan2(newTransform.b, newTransform.a));
+    
+    // fit the image after rotate
+    [self fixImageZoom:YES andSize:self.imageView.frame.size];
 }
 
 #pragma mark UIScrollViewDelegate
